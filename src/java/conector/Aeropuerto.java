@@ -108,9 +108,9 @@ public class Aeropuerto implements Serializable {
 
         public String generarJson(){
             String str = "";
-            str += "{ \"id\": \""+getId()+"\",\n";
-            str += "\"ciudad\": \""+getCiudad()+"\",\n";
-            str += "\"nombre\": \""+getNombre()+"\"\n";
+            str += "{ \"Id\": \""+getId()+"\",\n";
+            str += "\"Ciudad\": \""+getCiudad()+"\",\n";
+            str += "\"Nombre\": \""+getNombre()+"\"\n";
             str += "}";
                     
             return str;

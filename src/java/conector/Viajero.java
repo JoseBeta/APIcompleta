@@ -100,11 +100,12 @@ public class Viajero implements Serializable {
         
         public String generarJson(){
             String str="";
-            str += "{ \"id\": \""+getId()+"\",\n";
-            str += "\"dni\": \""+getDni()+"\",\n";
-            str += "\"fNaciemiento\": \""+getFNaciemiento().toString()+"\",\n";
-            str += "\"nombre\": \""+getNombre()+"\",\n";
-            str += "\"numAsiento\": \""+getNumAsiento()+"\"\n";
+            str += "{ \"Id\": \""+getId()+"\",\n";
+            str += "\"Dni\": \""+getDni()+"\",\n";
+            str += "\"FNaciemiento\": \""+getFNaciemiento().toString()+"\",\n";
+            str += "\"Nombre\": \""+getNombre()+"\",\n";
+            str += "\"NumAsiento\": \""+getNumAsiento()+"\"\n";
+            str += "}";
             return str;
         }
 

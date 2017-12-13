@@ -82,15 +82,15 @@ public class Reserva implements Serializable {
         public String generarJson(){
             String str="";
             str += "{"+"\n";
-            str += "\"id\": \""+getId()+"\""+",\n";
-            str += "\"precioPagado\": \""+getPrecioPagado()+"\",\n";
-            str += "\"vuelo\": "+getVuelo().generarJson()+"\",\n";
-            str += "\"viajeros\": [";
+            str += "\"Id\": \""+getId()+"\""+",\n";
+            str += "\"PrecioPagado\": \""+getPrecioPagado()+"\",\n";
+            str += "\"Vuelo\": "+getVuelo().generarJson()+",\n";
+            str += "\"Viajeros\": [";
             for(Viajero viajero: viajeros){
                 str += viajero.generarJson();
-                str += ",\n";
+                str += ",";
             }
-            str.substring(0, str.length()-1);
+            str = str.substring(0, str.length()-1);
             str += "]";
             str +="}";
             

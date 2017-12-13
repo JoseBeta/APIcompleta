@@ -117,29 +117,29 @@ public class Usuario implements Serializable {
         public String generarJson(){
             String str = "";
             str += "{"+"\n";
-            str += "\"id\": \""+getId()+"\""+",\n";
-            str += "\"admin\": \"";
+            str += "\"Id\": \""+getId()+"\""+",\n";
+            str += "\"Admin\": \"";
             if(getAdmin()){
                 str += 1;
             }else{
                 str += 0;
             }
             str += "\",\n";
-            str += "\"contrasena\": \""+getContrasena()+"\",\n";
+            str += "\"Contrasena\": \""+getContrasena()+"\",\n";
             str += "\"FNacimiento\": \""+getFNacimiento().toString()+"\",\n";
-            str += "\"busquedas\": [";
+            str += "\"Busquedas\": [";
             for(Busqueda busqueda: busquedas){
                 str += busqueda.generarJson();
                 str += ",";
             }
-            str.substring(0, str.length()-1);
-            str += "]";
-            str += "\"reservas\": [";
+            str = str.substring(0, str.length()-1);
+            str += "],\n";
+            str += "\"Reservas\": [";
             for(Reserva reserva: reservas){
                 str += reserva.generarJson();
                 str += ",";
             }
-            str.substring(0, str.length()-1);
+            str = str.substring(0, str.length()-1);
             str += "]";
             str +="}";
             return str;

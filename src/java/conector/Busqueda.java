@@ -79,9 +79,9 @@ public class Busqueda implements Serializable {
         public String generarJson(){
             String str = "";
             str += "{"+"\n";
-            str += "\"id\": \""+getId()+"\""+",\n";
-            str += "\"destino\": \""+getDestino()+"\",\n";
-            str += "\"salida\": \""+getSalida()+"\"\n";
+            str += "\"Id\": \""+getId()+"\""+",\n";
+            str += "\"Destino\": \""+getDestino()+"\",\n";
+            str += "\"Salida\": \""+getSalida()+"\"\n";
             str +="}";
             return str;
         }
