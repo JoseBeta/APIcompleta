@@ -115,5 +115,13 @@ public class Vuelo implements Serializable {
 	public void setAeropuerto2(Aeropuerto aeropuerto2) {
 		this.aeropuerto2 = aeropuerto2;
 	}
+        
+        public String generarJson(){
+            String str = "";
+            str += "{"+"\n";
+            str += "\"id\": \""+getId()+"\""+"\n";
+            str +="}";
+            return str;
+        }
 
 }

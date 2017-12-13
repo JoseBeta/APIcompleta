@@ -19,10 +19,6 @@ import conector.Vuelo;
 public class GestionarUsuarios {
 	private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
-	public static void main(String[] args) {
-		nuevoUsuario("03/01/1994", "123", "Beta");
-	}
-	
 	public static void nuevoUsuario(String fecha, String pass, String nombre) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("ORM-JPA");
 		EntityManager em = emf.createEntityManager();

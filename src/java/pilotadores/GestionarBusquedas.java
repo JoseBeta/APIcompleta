@@ -14,11 +14,8 @@ import conector.Usuario;
 import conector.Vuelo;
 
 public class GestionarBusquedas {
-	public static void main(String[] args) {
-		nuevaBusqueda("gc","bcn");
-	}
-	
-	public static void nuevaBusqueda(String origen, String destino){
+
+	public static void nuevaBusqueda(String origen, String destino, Usuario user){
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("ORM-JPA");
 		EntityManager em = emf.createEntityManager();
 		
@@ -28,13 +25,11 @@ public class GestionarBusquedas {
 			busqueda.setDestino(destino);
 			
 			em.getTransaction().begin();
-			
-			Usuario user= em.find(Usuario.class, 1);
+
 			busqueda.getUsuarios().add(user);
 			
 			em.persist(busqueda);
 			em.getTransaction().commit();
-			System.out.println("OK");
 		}catch(Exception e){
 			em.getTransaction().rollback();
 			System.out.println("error "+e.getMessage());
@@ -43,8 +38,28 @@ public class GestionarBusquedas {
 			emf.close();
 		}
 	}
+        
+        public static void addBusqueda(Busqueda busqueda, Usuario user){
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("ORM-JPA");
+		EntityManager em = emf.createEntityManager();
+		
+		try {			
+			em.getTransaction().begin();
+                        
+			busqueda.getUsuarios().add(user);
+			
+			em.merge(busqueda);
+			em.getTransaction().commit();
+		}catch(Exception e){
+			em.getTransaction().rollback();
+			System.out.println("error "+e.getMessage());
+		}finally {
+			em.close();
+			emf.close();
+		}
+        }
 	
-	public static Busqueda encontrarBusquedaSalidaYOrigen(String salida, String destino){
+	public static Busqueda encontrarBusquedaSalidaYDestino(String salida, String destino){
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("ORM-JPA");
 		EntityManager em = emf.createEntityManager();
 		
