@@ -5,6 +5,9 @@
  */
 package servicios;
 
+import com.google.gson.Gson;
+import conector.Busqueda;
+import conector.Usuario;
 import conector.Vuelo;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -55,20 +58,22 @@ public class ServiciosBusqueda {
     }
 
     @POST
-    @Path("busqueda/{origen}/{destino}/{id}")
-    @Consumes(MediaType.TEXT_PLAIN)
+    @Path("busqueda{/id}")
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public String buscar(@PathParam("origen") String origen, @PathParam("destino") String destino, @PathParam("id") int id) {
+    public String buscar(String json, String jsonUsuario) {
         try{
-            if(GestionarBusquedas.encontrarBusquedaSalidaYDestino(origen, destino).getSalida() != null){
-                GestionarBusquedas.addBusqueda(GestionarBusquedas.encontrarBusquedaSalidaYDestino(origen, destino), GestionarUsuarios.encontrarUsuario(id));
+            Busqueda busqueda = new Gson().fromJson(json, Busqueda.class);
+            Usuario usuario = new Gson().fromJson(jsonUsuario, Usuario.class);
+            if(busqueda.getSalida() != null){
+                GestionarBusquedas.addBusqueda(busqueda, usuario);
             }else{
-                GestionarBusquedas.nuevaBusqueda(origen, destino, GestionarUsuarios.encontrarUsuario(id));
+                GestionarBusquedas.nuevaBusqueda(busqueda.getSalida(), busqueda.getDestino(), usuario);
             }
             
-            List<Vuelo> vuelos = GestionarBusquedas.listarVuelos(origen, destino);
-            String json = vuelos.get(0).generarJson();
-            return json;
+            List<Vuelo> vuelos = GestionarBusquedas.listarVuelos(busqueda.getSalida(), busqueda.getDestino());
+            String jsons = vuelos.get(0).generarJson();
+            return jsons;
         }catch(Exception e){
             return "JA";
         }
@@ -81,7 +86,9 @@ public class ServiciosBusqueda {
     public String listarVuelos(@PathParam("origen") String origen, @PathParam("destino") String destino) {
         try{            
             List<Vuelo> vuelos = GestionarBusquedas.listarVuelos(origen, destino);
-            String json = vuelos.get(0).generarJson();
+            Vuelo vuelo = vuelos.get(0);
+            Gson gson = new Gson();
+            String json = gson.toJson(vuelo);
             return json;
         }catch(Exception e){
             return "JA";
