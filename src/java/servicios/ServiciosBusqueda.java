@@ -58,22 +58,21 @@ public class ServiciosBusqueda {
     }
 
     @POST
-    @Path("busqueda{/id}")
+    @Path("busqueda")
     @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public String buscar(String json, String jsonUsuario) {
+    @Produces(MediaType.TEXT_PLAIN)
+    public String buscar(String json) {
         try{
-            Busqueda busqueda = new Gson().fromJson(json, Busqueda.class);
-            Usuario usuario = new Gson().fromJson(jsonUsuario, Usuario.class);
+            RequestBody requestBody = new Gson().fromJson(json, RequestBody.class);
+            Busqueda busqueda = requestBody.getBusqueda();
+            Usuario usuario = requestBody.getUsuario();
             if(busqueda.getSalida() != null){
                 GestionarBusquedas.addBusqueda(busqueda, usuario);
             }else{
                 GestionarBusquedas.nuevaBusqueda(busqueda.getSalida(), busqueda.getDestino(), usuario);
             }
             
-            List<Vuelo> vuelos = GestionarBusquedas.listarVuelos(busqueda.getSalida(), busqueda.getDestino());
-            String jsons = vuelos.get(0).generarJson();
-            return jsons;
+            return "HA";
         }catch(Exception e){
             return "JA";
         }
@@ -87,8 +86,7 @@ public class ServiciosBusqueda {
         try{            
             List<Vuelo> vuelos = GestionarBusquedas.listarVuelos(origen, destino);
             Vuelo vuelo = vuelos.get(0);
-            Gson gson = new Gson();
-            String json = gson.toJson(vuelo);
+            String json = vuelo.generarJson();
             return json;
         }catch(Exception e){
             return "JA";
