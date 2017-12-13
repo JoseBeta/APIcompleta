@@ -173,4 +173,27 @@ public class GestionarUsuarios {
 			return false;
 		}
 	}
+        
+        public Usuario getUsuarioNombreYPass(String nombre, String pass){
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("ORM-JPA");
+		EntityManager em = emf.createEntityManager();
+		Usuario usuario = new Usuario();
+		try {
+			List usuarios;
+			
+			Query q1 = em.createNamedQuery("Usuario.findByNombreYContrasena");
+			q1.setParameter(1, nombre);
+			q1.setParameter(2, pass);
+			usuarios = q1.getResultList();
+			usuario = (Usuario) usuarios.get(0);
+
+		}catch(Exception e){
+			System.out.println("error "+e.getMessage());
+		}finally {
+			em.close();
+			emf.close();
+		}
+		
+		return usuario;
+        }
 }

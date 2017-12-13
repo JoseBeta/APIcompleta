@@ -75,5 +75,14 @@ public class Busqueda implements Serializable {
 	public void setUsuarios(List<Usuario> usuarios) {
 		this.usuarios = usuarios;
 	}
-
+        
+        public String generarJson(){
+            String str = "";
+            str += "{"+"\n";
+            str += "\"id\": \""+getId()+"\""+",\n";
+            str += "\"destino\": \""+getDestino()+"\",\n";
+            str += "\"salida\": \""+getSalida()+"\"\n";
+            str +="}";
+            return str;
+        }
 }

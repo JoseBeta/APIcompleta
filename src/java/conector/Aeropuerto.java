@@ -106,4 +106,13 @@ public class Aeropuerto implements Serializable {
 		return vuelos2;
 	}
 
+        public String generarJson(){
+            String str = "";
+            str += "{ \"id\": \""+getId()+"\",\n";
+            str += "\"ciudad\": \""+getCiudad()+"\",\n";
+            str += "\"nombre\": \""+getNombre()+"\"\n";
+            str += "}";
+                    
+            return str;
+        }
 }

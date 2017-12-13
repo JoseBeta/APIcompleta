@@ -113,5 +113,36 @@ public class Usuario implements Serializable {
 
 		return reserva;
 	}
+        
+        public String generarJson(){
+            String str = "";
+            str += "{"+"\n";
+            str += "\"id\": \""+getId()+"\""+",\n";
+            str += "\"admin\": \"";
+            if(getAdmin()){
+                str += 1;
+            }else{
+                str += 0;
+            }
+            str += "\",\n";
+            str += "\"contrasena\": \""+getContrasena()+"\",\n";
+            str += "\"FNacimiento\": \""+getFNacimiento().toString()+"\",\n";
+            str += "\"busquedas\": [";
+            for(Busqueda busqueda: busquedas){
+                str += busqueda.generarJson();
+                str += ",";
+            }
+            str.substring(0, str.length()-1);
+            str += "]";
+            str += "\"reservas\": [";
+            for(Reserva reserva: reservas){
+                str += reserva.generarJson();
+                str += ",";
+            }
+            str.substring(0, str.length()-1);
+            str += "]";
+            str +="}";
+            return str;
+        }
 
 }

@@ -97,5 +97,15 @@ public class Viajero implements Serializable {
 	public void setReservas(List<Reserva> reservas) {
 		this.reservas = reservas;
 	}
+        
+        public String generarJson(){
+            String str="";
+            str += "{ \"id\": \""+getId()+"\",\n";
+            str += "\"dni\": \""+getDni()+"\",\n";
+            str += "\"fNaciemiento\": \""+getFNaciemiento().toString()+"\",\n";
+            str += "\"nombre\": \""+getNombre()+"\",\n";
+            str += "\"numAsiento\": \""+getNumAsiento()+"\"\n";
+            return str;
+        }
 
 }
