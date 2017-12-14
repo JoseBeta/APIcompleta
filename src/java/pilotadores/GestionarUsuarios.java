@@ -174,7 +174,7 @@ public class GestionarUsuarios {
 		}
 	}
         
-        public Usuario getUsuarioNombreYPass(String nombre, String pass){
+        public static Usuario getUsuarioNombreYPass(String nombre, String pass){
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("ORM-JPA");
 		EntityManager em = emf.createEntityManager();
 		Usuario usuario = new Usuario();

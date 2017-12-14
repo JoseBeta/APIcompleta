@@ -118,13 +118,7 @@ public class Usuario implements Serializable {
             String str = "";
             str += "{"+"\n";
             str += "\"Id\": \""+getId()+"\""+",\n";
-            str += "\"Admin\": \"";
-            if(getAdmin()){
-                str += 1;
-            }else{
-                str += 0;
-            }
-            str += "\",\n";
+            str += "\"Nombre\": \""+getNombre()+"\",\n";
             str += "\"Contrasena\": \""+getContrasena()+"\",\n";
             str += "\"FNacimiento\": \""+getFNacimiento().toString()+"\",\n";
             str += "\"Busquedas\": [";

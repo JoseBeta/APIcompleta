@@ -25,6 +25,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
+import pilotadores.GestionarAeropuertos;
 import pilotadores.GestionarBusquedas;
 import pilotadores.GestionarUsuarios;
 /**
@@ -60,7 +61,7 @@ public class ServiciosBusqueda {
     @POST
     @Path("busqueda")
     @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     public String buscar(String json) {
         try{
             RequestBody requestBody = new Gson().fromJson(json, RequestBody.class);
@@ -72,9 +73,9 @@ public class ServiciosBusqueda {
                 GestionarBusquedas.nuevaBusqueda(busqueda.getSalida(), busqueda.getDestino(), usuario);
             }
             
-            return "HA";
+            return "{\"registrado\": \"1\"}";
         }catch(Exception e){
-            return "JA";
+            return "{\"registrado\": \"0\"}";
         }
     }
     
@@ -85,13 +86,7 @@ public class ServiciosBusqueda {
     public String listarVuelos(@PathParam("origen") String origen, @PathParam("destino") String destino) {
         try{            
             List<Vuelo> vuelos = GestionarBusquedas.listarVuelos(origen, destino);
-            String json = "[ ";
-            for(Vuelo vuelo: vuelos){
-                json += vuelo.generarJson();
-                json += ",";
-            }
-            json = json.substring(0, json.length()-1);
-            json += " ]";
+            String json = vuelos.get(0).generarJson();
             return json;
         }catch(Exception e){
             return "JA";
