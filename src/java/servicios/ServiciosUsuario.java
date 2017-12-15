@@ -36,29 +36,31 @@ public class ServiciosUsuario {
     @POST
     @Path("registro")
     @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
     public String registro(String json) {
         try{
-            Usuario usuario = new Gson().fromJson(json, Usuario.class);
-            GestionarUsuarios.nuevoUsuario(sdf.format(usuario.getFNacimiento()), usuario.getContrasena(), usuario.getNombre());
             
-            return "{\"registrado\": \"1\"}";
+            Usuario usuario = new Gson().fromJson(json, Usuario.class);
+            String date = sdf.format(usuario.getFNacimiento());
+            GestionarUsuarios.nuevoUsuario(date, usuario.getContrasena(), usuario.getNombre());
+            
+            return "1";
         }catch(Exception e){
-            return "{\"registrado\": \"0\"}";
+            return "0";
         }
     }
     
     @GET
     @Path("login/{nombre}/{contrasena}")
     @Consumes(MediaType.TEXT_PLAIN)
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
     public String login(@PathParam("nombre") String nombre,@PathParam("contrasena") String contrasena){
         try{
             GestionarUsuarios.login(nombre, contrasena);
             
-            return "{\"registrado\": \"1\"}";
+            return "1";
         }catch(Exception e){
-            return "{\"registrado\": \"0\"}";
+            return "0";
         }
     }
     
