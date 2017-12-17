@@ -16,10 +16,6 @@ import conector.Vuelo;
 
 public class GestionarReservas {
 	private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-	
-        public static void main(String[] args){
-            System.out.println(encontrarReserva(1).generarJson());
-        }
         
 	public static void nuevaReserva(Usuario user, Vuelo vuelo) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("ORM-JPA");
