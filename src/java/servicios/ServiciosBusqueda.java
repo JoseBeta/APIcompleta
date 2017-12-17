@@ -90,7 +90,7 @@ public class ServiciosBusqueda {
             String json = vuelos.get(0).generarJson();
             return json;
         }catch(Exception e){
-            return "JA";
+            return null;
         }
     }
     
