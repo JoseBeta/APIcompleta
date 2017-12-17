@@ -69,7 +69,7 @@ public class ServiciosBusqueda {
             Busqueda busqueda = requestBody.getBusqueda();
             
             if(GestionarBusquedas.encontrarBusquedaSalidaYDestino(busqueda.getSalida(), busqueda.getDestino()).getSalida() != null){
-                GestionarBusquedas.addBusqueda(busqueda, usuario);
+                GestionarBusquedas.addBusqueda(GestionarBusquedas.encontrarBusquedaSalidaYDestino(busqueda.getSalida(), busqueda.getDestino()), usuario);
             }else{
                 GestionarBusquedas.nuevaBusqueda(busqueda.getSalida(), busqueda.getDestino(), usuario);
             }
