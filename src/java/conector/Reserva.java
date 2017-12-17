@@ -84,13 +84,16 @@ public class Reserva implements Serializable {
             str += "{"+"\n";
             str += "\"Id\": \""+getId()+"\""+",\n";
             str += "\"PrecioPagado\": \""+getPrecioPagado()+"\",\n";
+            str += "\"Usuario\": { \"Id\":\""+getUsuario().getId()+"\"},\n";
             str += "\"Vuelo\": "+getVuelo().generarJson()+",\n";
             str += "\"Viajeros\": [";
             for(Viajero viajero: viajeros){
                 str += viajero.generarJson();
                 str += ",";
             }
-            str = str.substring(0, str.length()-1);
+            if(getViajeros().size()>0){
+                str = str.substring(0, str.length()-1);
+            }
             str += "]";
             str +="}";
             

@@ -61,21 +61,22 @@ public class ServiciosBusqueda {
     @POST
     @Path("busqueda")
     @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
     public String buscar(String json) {
         try{
             RequestBody requestBody = new Gson().fromJson(json, RequestBody.class);
-            Busqueda busqueda = requestBody.getBusqueda();
             Usuario usuario = requestBody.getUsuario();
+            Busqueda busqueda = requestBody.getBusqueda();
+            
             if(busqueda.getSalida() != null){
                 GestionarBusquedas.addBusqueda(busqueda, usuario);
             }else{
                 GestionarBusquedas.nuevaBusqueda(busqueda.getSalida(), busqueda.getDestino(), usuario);
             }
             
-            return "{\"registrado\": \"1\"}";
+            return "1";
         }catch(Exception e){
-            return "{\"registrado\": \"0\"}";
+            return "0";
         }
     }
     

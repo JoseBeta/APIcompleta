@@ -17,6 +17,10 @@ import conector.Vuelo;
 public class GestionarReservas {
 	private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
+        public static void main(String[] args){
+            System.out.println(encontrarReserva(1).generarJson());
+        }
+        
 	public static void nuevaReserva(Usuario user, Vuelo vuelo) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("ORM-JPA");
 		EntityManager em = emf.createEntityManager();
@@ -39,12 +43,11 @@ public class GestionarReservas {
 		}
 	}
 	
-	public static void modificarReserva(Reserva reserva, Usuario user, Vuelo vuelo) {
+	public static void modificarReserva(Reserva reserva, Vuelo vuelo) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("ORM-JPA");
 		EntityManager em = emf.createEntityManager();
 		
 		try {
-			reserva.setUsuario(user);
 			reserva.setVuelo(vuelo);
 			
 			em.getTransaction().begin();

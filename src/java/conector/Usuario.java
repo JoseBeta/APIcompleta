@@ -126,14 +126,18 @@ public class Usuario implements Serializable {
                 str += busqueda.generarJson();
                 str += ",";
             }
-            str = str.substring(0, str.length()-1);
+            if(getBusquedas().size()>0){
+                str = str.substring(0, str.length()-1);
+            }
             str += "],\n";
             str += "\"Reservas\": [";
             for(Reserva reserva: reservas){
                 str += reserva.generarJson();
                 str += ",";
             }
-            str = str.substring(0, str.length()-1);
+            if(getReservas().size()>0){
+                str = str.substring(0, str.length()-1);
+            }
             str += "]";
             str +="}";
             return str;
