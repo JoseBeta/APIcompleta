@@ -45,6 +45,8 @@ public class GestionarReservas {
 		
 		try {
 			reserva.setVuelo(vuelo);
+                        reserva.setPrecioPagado(vuelo.getPrecio());
+                        reserva.setUsuario(reserva.getUsuario());
 			
 			em.getTransaction().begin();
 			em.merge(reserva);

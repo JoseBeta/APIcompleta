@@ -41,7 +41,7 @@ public class ServiciosReserva {
     @Path("encontrar/{id}")
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
-    public String login(@PathParam("id") int id){
+    public String encontrar(@PathParam("id") int id){
         try{
             Reserva reserva = GestionarReservas.encontrarReserva(id);
             
@@ -72,7 +72,7 @@ public class ServiciosReserva {
     public String modificar(Reserva reserva) {
         try{
   
-            GestionarReservas.modificarReserva(GestionarReservas.encontrarReserva(1), GestionarVuelos.encontrarVuelo(2));            
+            GestionarReservas.modificarReserva(reserva, reserva.getVuelo());            
             return "1";
         }catch(Exception e){
             return "0";
