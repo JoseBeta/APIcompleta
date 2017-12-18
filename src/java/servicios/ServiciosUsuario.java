@@ -56,9 +56,11 @@ public class ServiciosUsuario {
     @Produces(MediaType.TEXT_PLAIN)
     public String login(@PathParam("nombre") String nombre,@PathParam("contrasena") String contrasena){
         try{
-            GestionarUsuarios.login(nombre, contrasena);
+            if(GestionarUsuarios.login(nombre, contrasena)){
+                return "1";
+            }
             
-            return "1";
+            return "0";
         }catch(Exception e){
             return "0";
         }

@@ -120,8 +120,8 @@ public class Vuelo implements Serializable {
             String str = "";
             str += "{"+"\n";
             str += "\"Id\": \""+getId()+"\""+",\n";
-            str += "\"Aerpouerto1\": "+getAeropuerto1().generarJson()+",\n";
-            str += "\"Aerpouerto2\": "+getAeropuerto2().generarJson()+",\n";
+            str += "\"Aeropuerto1\": "+getAeropuerto1().generarJson()+",\n";
+            str += "\"Aeropuerto2\": "+getAeropuerto2().generarJson()+",\n";
             str += "\"Precio\": \""+getPrecio()+"\"\n";
             str +="}";
             return str;

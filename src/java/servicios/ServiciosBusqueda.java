@@ -87,7 +87,16 @@ public class ServiciosBusqueda {
     public String listarVuelos(@PathParam("origen") String origen, @PathParam("destino") String destino) {
         try{            
             List<Vuelo> vuelos = GestionarBusquedas.listarVuelos(origen, destino);
-            String json = vuelos.get(0).generarJson();
+            String json = "";
+                json +="[";
+            for(Vuelo vuelo: vuelos){
+                json += vuelo.generarJson();
+                json +=",";
+            }
+            
+            json = json.substring(0, json.length()-1);
+            json += "]";
+            
             return json;
         }catch(Exception e){
             return null;
