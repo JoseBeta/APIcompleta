@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import conector.Usuario;
 import java.text.SimpleDateFormat;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -77,6 +78,20 @@ public class ServiciosUsuario {
             return usuarioLogeado.generarJson();
         }catch(Exception e){
             return null;
+        }
+    }
+    
+    @DELETE
+    @Path("borrar/{id}")
+    @Consumes(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.TEXT_PLAIN)
+    public String usuarioLogedo(@PathParam("id") int id){
+        try{
+            GestionarUsuarios.borrarUsuario(id);
+            
+            return "1";
+        }catch(Exception e){
+            return "0";
         }
     }
 }

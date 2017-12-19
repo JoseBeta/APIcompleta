@@ -16,7 +16,7 @@ import java.util.List;
 @Entity
 @NamedQuery(name="Vuelo.findAll", query="SELECT v FROM Vuelo v")
 public class Vuelo implements Serializable {
-	public static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	public static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -43,15 +43,6 @@ public class Vuelo implements Serializable {
 	private Aeropuerto aeropuerto2;
 
 	public Vuelo() {
-	}
-	
-	public void leer() {
-		
-		System.out.println("ID: "+getId());
-		System.out.println("Fecha: "+sdf.format(getFecha()));
-		System.out.println("Aeropuerto de origen: "+getAeropuerto1().getNombre()+", "+getAeropuerto1().getCiudad());
-		System.out.println("Aeropuerto de origen: "+getAeropuerto2().getNombre()+", "+getAeropuerto2().getCiudad());
-		System.out.println("precio: "+getPrecio());
 	}
 
 	public int getId() {
@@ -120,6 +111,7 @@ public class Vuelo implements Serializable {
             String str = "";
             str += "{"+"\n";
             str += "\"Id\": \""+getId()+"\""+",\n";
+            str += "\"Fecha\": \""+sdf.format(getFecha())+"\""+",\n";
             str += "\"Aeropuerto1\": "+getAeropuerto1().generarJson()+",\n";
             str += "\"Aeropuerto2\": "+getAeropuerto2().generarJson()+",\n";
             str += "\"Precio\": \""+getPrecio()+"\"\n";

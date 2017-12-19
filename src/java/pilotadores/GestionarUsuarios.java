@@ -107,12 +107,12 @@ public class GestionarUsuarios {
 	}
 
 	
-	public static void borrarUsuario(Usuario usuario) {
+	public static void borrarUsuario(int id) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("ORM-JPA");
 		EntityManager em = emf.createEntityManager();
 		
 		try {
-			Usuario usuarioABorrar = em.find(Usuario.class, usuario.getId());
+			Usuario usuarioABorrar = em.find(Usuario.class, id);
 			
 			em.getTransaction().begin();
 			em.remove(usuarioABorrar);
