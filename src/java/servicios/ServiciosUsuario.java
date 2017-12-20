@@ -7,11 +7,13 @@ package servicios;
 
 import com.google.gson.Gson;
 import conector.Usuario;
+import static java.awt.event.PaintEvent.UPDATE;
 import java.text.SimpleDateFormat;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -44,6 +46,22 @@ public class ServiciosUsuario {
             Usuario usuario = new Gson().fromJson(json, Usuario.class);
             String date = sdf.format(usuario.getFNacimiento());
             GestionarUsuarios.nuevoUsuario(date, usuario.getContrasena(), usuario.getNombre());
+            
+            return "1";
+        }catch(Exception e){
+            return "0";
+        }
+    }
+    
+    @PUT
+    @Path("modificar")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
+    public String cambiarPass(String json) {
+        try{
+            
+            Usuario usuario = new Gson().fromJson(json, Usuario.class);
+            GestionarUsuarios.cambiarContrasena(usuario, usuario.getContrasena());
             
             return "1";
         }catch(Exception e){

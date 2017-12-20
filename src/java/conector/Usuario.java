@@ -1,6 +1,7 @@
 package conector;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import javax.persistence.*;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ import java.util.List;
 })
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
+        public static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY) 
@@ -120,7 +122,7 @@ public class Usuario implements Serializable {
             str += "\"Id\": \""+getId()+"\""+",\n";
             str += "\"Nombre\": \""+getNombre()+"\",\n";
             str += "\"Contrasena\": \""+getContrasena()+"\",\n";
-            str += "\"FNacimiento\": \""+getFNacimiento().toString()+"\",\n";
+            str += "\"FNacimiento\": \""+sdf.format(getFNacimiento())+"\",\n";
             str += "\"Busquedas\": [";
             for(Busqueda busqueda: busquedas){
                 str += busqueda.generarJson();

@@ -73,6 +73,8 @@ public class GestionarUsuarios {
 		EntityManager em = emf.createEntityManager();
 		
 		try {
+                        user.setNombre(user.getNombre());
+                        user.setFNacimiento(user.getFNacimiento());
 			user.setContrasena(pass);
 
 			em.getTransaction().begin();

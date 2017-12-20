@@ -6,9 +6,14 @@
             <file>file:/C:/Users/AlumnoTarde/Documents/api/API-HM2/src/java/conector/Viajero.java</file>
             <file>file:/C:/Users/AlumnoTarde/Documents/api/API-HM2/src/java/pilotadores/GestionarUsuarios.java</file>
             <file>file:/C:/Users/AlumnoTarde/Documents/api/API-HM2/src/java/servicios/ServiciosBusqueda.java</file>
+            <file>file:/C:/Users/AlumnoTarde/Documents/api/API-HM2/src/java/conector/Usuario.java</file>
             <file>file:/C:/Users/AlumnoTarde/Documents/api/API-HM2/src/java/servicios/ServiciosUsuario.java</file>
+            <file>file:/C:/Users/AlumnoTarde/Documents/api/API-HM2/src/java/conector/Reserva.java</file>
             <file>file:/C:/Users/AlumnoTarde/Documents/api/API-HM2/src/java/pilotadores/GestionarVuelos.java</file>
+            <file>file:/C:/Users/AlumnoTarde/Documents/api/API-HM2/src/java/pilotadores/GestionarReservas.java</file>
+            <file>file:/C:/Users/AlumnoTarde/Documents/api/API-HM2/src/java/servicios/ServiciosReserva.java</file>
             <file>file:/C:/Users/AlumnoTarde/Documents/api/API-HM2/src/java/conector/Vuelo.java</file>
+            <file>file:/C:/Users/AlumnoTarde/Documents/api/API-HM2/src/java/conector/Aeropuerto.java</file>
         </group>
     </open-files>
 </project-private>
